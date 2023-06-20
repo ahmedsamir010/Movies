@@ -1,0 +1,91 @@
+<header>
+  <app-swiper></app-swiper>
+</header>
+
+<div class="container-fluid mt-5">
+  <!-- Movies -->
+  <div class="row g-4">
+    <div class="col-md-3 d-flex align-items-center">
+      <div class="title">
+        <h2>
+          Trending<br />
+          Movies<br />
+          To Watch Now
+        </h2>
+        <p>Most Watched Movies By Days</p>
+      </div>
+    </div>
+
+    <div *ngFor="let movie of getMovies" class="col-md-3">
+      <div class="item p-3 hover" [routerLink]="['/details', movie.id, movie.media_type]">
+        <img
+          class="card-img-top img-thumbnail border-0 bg-transparent"
+          [src]="imgPath + movie.poster_path"
+          [alt]="movie.title"
+          [title]="movie.title"
+        />
+        <p class="text-center">{{ movie.title }}</p>
+
+        <div class="movieOverview">
+          <p class="text-center">{{ movie.overview | overview:10 }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TV -->
+  <div class="row g-4">
+    <div class="col-md-3 d-flex align-items-center">
+      <div class="title">
+        <h2>
+          Trending<br />
+          Tv<br />
+          To Watch Now
+        </h2>
+        <p>Most Watched Tv By Days</p>
+      </div>
+    </div>
+
+    <div *ngFor="let tv of getTv" class="col-md-3">
+      <div class="item" [routerLink]="['/details', tv.id, tv.media_type]">
+        <img
+          class="card-img-top img-thumbnail border-0 bg-transparent"
+          [src]="imgPath + tv.poster_path"
+          [alt]="tv.name"
+          [title]="tv.name"
+        />
+        <p class="text-center">{{ tv.name }}</p>
+
+        <div class="movieOverview">
+          <p class="text-center">{{ tv.overview | overview:20 }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- People -->
+  <div class="row gy-4">
+    <div class="col-md-3 d-flex align-items-center">
+      <div class="title">
+        <h2>
+          Trending<br />
+          People<br />
+          To Watch Now
+        </h2>
+        <p>Most Watched Tv By Days</p>
+      </div>
+    </div>
+
+    <div *ngFor="let people of getPeople" class="col-md-3">
+      <div class="item" [routerLink]="['/detailsPeople', people.id, mediaType]">
+        <img
+          class="card-img-top img-thumbnail border-0 bg-transparent"
+          [src]="imgPath + people.profile_path"
+          [alt]="people.name"
+          [title]="people.name"
+        />
+        <p class="text-center p-3">{{ people.name }}</p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+<section class="mb-5">
+  <div  class="container-fluid py-3">
+    <div class="d-flex justify-content-center">
+      <!-- To Get Image -->
+      <div>
+        <div class="img  hover">
+          <img *ngIf="peopleDetails.profile_path"
+            class="card-img-top img-thumbnail border-0 bg-transparent  rounded-3 w-100"
+            [src]="imgPath + peopleDetails.profile_path"
+            [alt]="peopleDetails.name"
+            [title]="peopleDetails.name"/>
+        </div>
+
+      </div>
+
+      <!-- To Get Details Media Type -->
+      <div class=" px-5">
+        <h2>Name → {{ peopleDetails.name }}</h2>
+        <p *ngIf="peopleDetails.known_for_department" class=" bg-gradient">Known For Department → {{ peopleDetails.known_for_department }} </p>
+        <p  *ngIf="peopleDetails.place_of_birth" class="py-2">Place of Birth → {{ peopleDetails.place_of_birth }}</p>
+        <p *ngIf="peopleDetails.birthday" class="py-2">Birthday → {{ peopleDetails.birthday }}</p>
+        <p *ngIf="peopleDetails.popularity" class="py-2">popularity → {{ peopleDetails.popularity.toFixed(1) }}</p>
+        <p *ngIf="peopleDetails.release_date" class="py-2">
+          Release Date → {{ peopleDetails.release_date }}
+        </p>
+        <div class="overview">
+          <h2 *ngIf="peopleDetails.biography">Overview →</h2>
+          <p *ngIf="peopleDetails.biography"  class="ps-5 ">{{ peopleDetails.biography.slice(0, 200) }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

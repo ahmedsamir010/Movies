@@ -1,0 +1,26 @@
+<div class="container-fluid mt-5">
+  <div class="row g-4">
+
+
+    <div *ngFor="let tv of trendingTvs" class="col-md-3">
+      <div class="item" [routerLink]="['/details',tv.id,mediaType]">
+        <img
+          class="card-img-top img-thumbnail border-0 bg-transparent"
+          [src]="imgPath + tv.poster_path"
+          [alt]="tv.name"
+          [title]="tv.name"
+        />
+        <p class="text-center">{{tv.name}}</p>
+
+        <div *ngIf="tv.overview" class="movieOverview">
+          <p  class="text-center">{{tv.overview.slice(0,60)}}</p>
+        </div>
+        <div *ngIf="!tv.overview" class="p-3 movieOverview">
+          <p  class="text-center">Not Fount overview</p>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>

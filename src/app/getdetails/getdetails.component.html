@@ -1,0 +1,67 @@
+<section class="">
+  <div class="container-fluid py-3">
+    <div class="d-flex justify-content-center hover">
+      <!-- To Get Image -->
+      <div>
+        <div class="itemDetails w-100 hover">
+          <img class="card-img-top img-thumbnail border-0 bg-transparent w-100 rounded-3"
+               [src]="imgPath + details.poster_path"
+               [alt]="details.name"
+               [title]="details.name">
+        </div>
+      </div>
+
+      <!-- To Get Details Media Type -->
+      <div class="px-5">
+        <h2 *ngIf="details.title">Headline → {{ details.title }}</h2>
+        <h2 *ngIf="details.original_language == 'en'" class="text-capitalize">
+          Language → {{ details.original_language }}glish
+        </h2>
+        <h3 *ngIf="details.original_language == 'it'" class="text-capitalize">
+          Language → {{ details.original_language }}aly
+        </h3>
+
+        <p class="py-2">Vote → {{ details.vote_average?.toFixed(1) }}</p>
+        <p class="py-2">Vote count → {{ details.vote_count?.toFixed(1) }}</p>
+        <p class="py-2">Popularity → {{ details.popularity?.toFixed(1) }}</p>
+        <p *ngIf="details.release_date" class="py-2">
+          Release Date → {{ details.release_date }}
+        </p>
+        <div class="overview">
+          <h2 *ngIf="details.overview">Overview →</h2>
+          <p *ngIf="details.overview" class="text-muted ps-5">{{ details.overview | overview:35 }}</p>
+        </div>
+        <div *ngIf="details.homepage" class="text-center mt-3">
+          <a [href]="details.homepage" target="_blank">
+            <button class="w-100 glow-on-hover" mat-raised-button color="primary" type="submit">
+              Watch Now
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="row my-5">
+      <h1 *ngIf="similars.value">Related Movies To This Movie</h1>
+
+      <div *ngFor="let similar of similars" class="col-md-3">
+        <div (click)="getSimilar(similar.id, mediaType)" class="item p-3">
+          <img class="card-img-top img-thumbnail border-0 bg-transparent"
+               [src]="imgPath + similar.poster_path"
+               [alt]="similar.title"
+               [title]="similar.title">
+
+          <p *ngIf="similar.title" class="text-center">{{ similar.title }}</p>
+          <p *ngIf="similar.original_name" class="text-center">{{ similar.original_name }}</p>
+
+          <div *ngIf="similar.overview" class="movieOverview">
+            <p class="text-center">{{ similar.overview.slice(0, 60) }}</p>
+          </div>
+          <div *ngIf="!similar.overview" class="p-3 movieOverview">
+            <p class="text-center">Not Found overview</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

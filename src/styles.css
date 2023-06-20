@@ -1,0 +1,58 @@
+@import url("https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&family=Roboto:wght@300&display=swap");
+:root {
+  --text-color:#fff;
+  --bg-main:#1700484f;
+  --bg-navbar:#1d0936;
+  --text-font:"Mochiy Pop One", sans-serif;
+}
+
+body {
+  background-color: var(--bg-main);
+}
+
+.navbar {
+  background-color: var(--bg-navbar);
+}
+
+p, h2, h3, h4, h1 {
+  font-family: var(--text-font);
+}
+
+a {
+  color: var(--text-color);
+  font-family: var(--text-font);
+}
+
+input {
+  color: var(--text-color) !important;
+}
+
+.movieOverview {
+  background-color: rgba(83, 21, 153, 0.5333333333);
+  padding: 8px;
+  border-radius: 10px;
+}
+
+.item {
+  cursor: pointer;
+  box-shadow: -7px -8px 55px -5px rgba(97, 4, 204, 0.5333333333);
+  -webkit-box-shadow: -7px -8px 55px -5px rgba(92, 20, 123, 0.862745098);
+  -moz-box-shadow: -7px -8px 55px -5px rgba(101, 38, 173, 0.5333333333);
+}
+
+.item img {
+  border-radius: 10px;
+}
+/*  */
+
+
+/* You can add global styles to this file, and also import other style files */
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}/*# sourceMappingURL=styles.css.map */
+

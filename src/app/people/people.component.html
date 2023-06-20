@@ -1,0 +1,24 @@
+<div class="container-fluid mt-5">
+  <div class="row g-4">
+    <div *ngFor="let people of trendingPeople" class="col-md-3">
+      <div class="item p-3 hover" [routerLink]="['/detailsPeople', people.id, mediaType]">
+        <img *ngIf="people.profile_path"
+          class="card-img-top img-thumbnail border-0 bg-transparent"
+          [src]="imgPath + people.profile_path"
+          [alt]="people.name"
+          [title]="people.name"
+        />
+
+        <!-- To define a not found image -->
+        <img *ngIf="!people.profile_path"
+          class="card-img-top img-thumbnail border-0 bg-transparent"
+          src="../../assets/images/Error.jpg"
+          [alt]="people.name"
+          [title]="people.name"
+        />
+
+        <p class="text-center">{{ people.name }}</p>
+      </div>
+    </div>
+  </div>
+</div>
