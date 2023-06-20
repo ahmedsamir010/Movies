@@ -1,0 +1,227 @@
+@import url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&family=Roboto:wght@300&display=swap');
+
+@import "~swiper/css";
+@import "~swiper/css/effect-coverflow";
+@import "~swiper/css/pagination";
+
+.swiper {
+  width: 100%;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.swiper-slide {
+  background-position: center;
+  background-size: cover;
+  width: 300px;
+  height: 300px;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 80%;
+}
+
+:root {
+  --text-color: #fffffff3;
+  --bg-main: #29043cf9;
+  --bg-navbar: #400e51;
+  --text-font: 'Mochiy Pop One', sans-serif;
+}
+
+li {
+  list-style-type: none;
+}
+
+.navbar {
+  background-color: var(--bg-navbar);
+}
+
+p,
+h2,
+h3,
+h4,
+h1 {
+  font-family: var(--text-font) !important;
+}
+
+h3 {
+  font-family: var(--text-font) !important;
+  color: var(--text-color);
+  font-size: 22px !important;
+}
+
+a {
+  color: var(--text-color) !important;
+  font-family: var(--text-font);
+  transition: color 0.5s;
+}
+
+a:hover {
+  color: #9367bc !important;
+}
+
+input {
+  color: var(--text-color) !important;
+}
+
+.movieOverview {
+  background-color: #53159988;
+  padding: 8px;
+  border-radius: 10px;
+}
+
+.item {
+  cursor: pointer;
+  box-shadow: -7px -8px 80px -5px #6104cc88;
+  -webkit-box-shadow: -7px -8px 55px -5px #5c147bdc;
+  -moz-box-shadow: -7px -8px 55px -5px #6526ad88;
+}
+
+.img {
+  box-shadow: -7px -8px 55px -5px #6104cc88;
+  -webkit-box-shadow: -7px -8px 55px -5px #5c147bdc;
+  -moz-box-shadow: -7px -8px 55px -5px #6526ad88;
+}
+
+.item img {
+  border-radius: 10px;
+  transition: all 0.3s;
+}
+
+.item img:hover {
+  transform: scale(1.05);
+  overflow: hidden;
+}
+
+.glow-on-hover {
+  width: 220px;
+  height: 50px;
+  border: none;
+  outline: none;
+  color: #fff;
+  background: #111;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+}
+
+.glow-on-hover:before {
+  content: '';
+  background: linear-gradient(45deg, #9000ffa3, #0037ff6a, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing 20s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+.glow-on-hover:active {
+  color: #000;
+}
+
+.glow-on-hover:active:after {
+  background: transparent;
+}
+
+.glow-on-hover:hover:before {
+  opacity: 1;
+}
+
+.glow-on-hover:after {
+  z-index: -1;
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: var(--bg-navbar);
+  left: 0;
+  top: 0;
+  border-radius: 1px;
+}
+
+.activeLink {
+  background-image: linear-gradient(to right, #54b3d6, #54b3d6 50%, rgb(114, 13, 216) 50%);
+  background-size: 200% 100%;
+  background-position: -100%;
+  display: inline-block;
+  padding: 5px 0;
+  position: relative;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transition: all 0.3s ease-in-out;
+}
+
+.activeLink:before {
+  content: '';
+  background: #54b3d6;
+  display: block;
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  transition: all 0.3s ease-in-out;
+}
+
+.activeLink:hover {
+  background-position: 0;
+}
+
+.activeLink:hover::before {
+  width: 100%;
+}
+
+.social {
+  color: #ffff;
+  transition: all 0.3s;
+  font-size: 1.25rem;
+}
+
+.social:hover {
+  color: #1d0936;
+}
+
+.hoverHeadline {
+  --b: 0.1em;   /* the thickness of the line */
+  --c: #7b0cbc; /* the color */
+
+  color: #0000;
+  padding-block: var(--b);
+  background:
+    linear-gradient(var(--c) 50%, #000 0) 0% calc(100% - var(--_p, 0%))/100% 200%,
+    linear-gradient(var(--c) 0 0) 0% var(--_p, 0%)/var(--_p, 0%) var(--b) no-repeat;
+  -webkit-background-clip: text, padding-box;
+  background-clip: text, padding-box;
+  transition: 0.3s var(--_s, 0s) linear, background-size 0.3s calc(0.3s - var(--_s, 0s));
+}
+
+.hoverHeadline:hover {
+  --_p: 100%;
+  --_s: 0.3s;
+}
+
+
+
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: var(--bg-main) !important;
+color: #ffff;
+}
