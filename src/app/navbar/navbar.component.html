@@ -53,7 +53,7 @@
           </a>
         </li>
         <li *ngIf="isLogin" class="nav-item p-2">
-          <a (click)="logOut()" class="nav-link" routerLink="login">Welcome {{ userName }}</a>
+          <a class="nav-link"> {{ userName }}</a>
         </li>
         <li *ngIf="isLogin" class="nav-item p-2">
           <a (click)="logOut()" class="nav-link" routerLink="login">Log out <i class="fa-solid fa-right-from-bracket"></i></a>

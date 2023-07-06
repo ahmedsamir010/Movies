@@ -9,56 +9,47 @@ import { AuthApiService } from '../services/auth/auth-api.service';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-errorMessage:string='';
-registerData:any;
-hide = true;
-isLoading:boolean=false;
+  errorMessage: string = '';
+  registerData!: FormGroup;
+  hide = true;
+  isLoading = false;
 
-constructor(private _AuthApiService:AuthApiService,private _Router:Router)
- {
-  if(localStorage.getItem("userToken") !=null)
-  {
-    this._Router.navigate(['/home'])
-  }
+  constructor(private _AuthApiService: AuthApiService, private _Router: Router) {
+    if (localStorage.getItem("userToken") != null) {
+      this._Router.navigate(['/home']);
+    }
   }
 
   ngOnInit(): void {
-  this.registerForm()
+    this.registerForm();
   }
 
-registerForm(){
-  this.isLoading=true;
-this.registerData =new FormGroup({
-  first_name:new FormControl(null,[Validators.minLength(3),Validators.maxLength(10),Validators.required]),
-  last_name:new FormControl(null,[Validators.minLength(3),Validators.maxLength(10),Validators.required]),
-  email : new FormControl('', [Validators.required, Validators.email]),
-  password:new FormControl(null,[Validators.pattern(/^[a-z0-9]{3,}$/),Validators.required]),
-})
-}
-
-signUp(FormGroup:FormGroup):void
-{
-  this.isLoading=false;
-this._AuthApiService.signUp(FormGroup.value).subscribe({
-  next:(response)=>{
-
-    if(response.message === 'success')
-    {
-      this._Router.navigate(['/login']);
-      // Go to Home
-    }
-    else{
-      this.errorMessage=response.message;
-    }
-  },
-  complete:()=>{
-    this.isLoading=true;
+  registerForm() {
+    this.isLoading = false;
+    this.registerData = new FormGroup({
+      firstName: new FormControl(null, [Validators.minLength(3), Validators.maxLength(10), Validators.required]),
+      lastName: new FormControl(null, [Validators.minLength(3), Validators.maxLength(10), Validators.required]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl(null, [Validators.pattern(/^[a-zA-Z0-9]{3,}$/), Validators.required]),
+    });
   }
 
-})
+  signUp(): void {
+    if (this.registerData.invalid) {
+      return;
+    }
+    
+    this.isLoading = true;
 
+    this._AuthApiService.signUp(this.registerData.value).subscribe({
+      next: () => {
+        this._Router.navigate(['/home']);
+      },
+      error: (error) => {
+        this.errorMessage = 'An error occurred. Please try again.';
+        console.error(error);
+        this.isLoading = false;
+      }
+    });
+  }
 }
-
-
-}
-

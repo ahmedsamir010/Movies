@@ -14,17 +14,17 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.alreadyLogin();
-    this.userName = this._AuthApiService.userData.getValue().first_name;
   }
 
   alreadyLogin() {
     this._AuthApiService.userData.subscribe({
-      next: () => {
-        if (this._AuthApiService.userData.getValue() != null) {
+      next: (userData) => {
+        if (userData != null) {
           this.isLogin = true;
+          this.userName = userData.firstName; // Set the user's first name
         } else {
-          console.log("Hello not Guard");
           this.isLogin = false;
+          this.userName = '';
         }
       }
     });

@@ -12,7 +12,6 @@ import { TvComponent } from './tv/tv.component';
 import { AboutComponent } from './about/about.component';
 import { AuthGuardGuard } from './guard/auth-guard.guard';
 import { GetdetailsComponent } from './getdetails/getdetails.component';
-
 const routes: Routes =
  [
   {path:"",redirectTo:"home",pathMatch:"full"},

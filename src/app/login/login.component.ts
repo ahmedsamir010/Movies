@@ -10,7 +10,7 @@ import { AuthApiService } from '../services/auth/auth-api.service';
 })
 export class LoginComponent implements OnInit {
   errorMessage: string = '';
-  loginData: any;
+  loginData!: FormGroup;
   hide = true;
   isLoading: boolean = false;
 
@@ -24,30 +24,32 @@ export class LoginComponent implements OnInit {
   }
 
   loginForm(): void {
-    this.isLoading = true;
+    this.isLoading = false;
     this.loginData = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl(null, [
-        Validators.pattern(/^[a-z0-9]{3,}$/),
+        Validators.pattern(/^[a-zA-Z0-9]{3,}$/),
         Validators.required
       ]),
     });
   }
 
-  signIn(formGroup: FormGroup): void {
-    this.isLoading = false;
-    this._AuthApiService.signIn(formGroup.value).subscribe({
+  signIn(): void {
+    if (this.loginData.invalid) {
+      return;
+    }
+    
+    this.isLoading = true;
+    this._AuthApiService.signIn(this.loginData.value).subscribe({
       next: (response) => {
-        if (response.message === 'success') {
-          localStorage.setItem('userToken', response.token);
-          this._AuthApiService.saveUserData();
-          this._Router.navigate(['/home']);
-        } else {
-          this.errorMessage = response.message;
-        }
+        localStorage.setItem('userToken', response.token);
+        this._AuthApiService.saveUserData();
+        this._Router.navigate(['/home']);
       },
-      complete: () => {
-        this.isLoading = true;
+      error: (error) => {
+        this.errorMessage = 'An error occurred. Please try again.';
+        console.error(error);
+        this.isLoading = false;
       }
     });
   }

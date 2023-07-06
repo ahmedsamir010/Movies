@@ -27,16 +27,20 @@ export class AuthApiService {
   }
 
   signUp(userData: object): Observable<any> {
-    return this._HttpClient.post(`https://route-movies-api.vercel.app/signup/`, userData);
+    return this._HttpClient.post(`http://accountbased.somee.com/api/Account/Register`, userData);
   }
 
   signIn(userData: object): Observable<any> {
-    return this._HttpClient.post(`https://route-movies-api.vercel.app/signin`, userData);
+    return this._HttpClient.post(`http://accountbased.somee.com/api/Account/Login`, userData);
   }
 
   signOut() {
-    localStorage.removeItem('userToken');
-    this.userData.next(null);
-    this._Router.navigate(['/login']);
+    const confirmLogout = confirm("Are you sure you want to log out?");
+    if (confirmLogout) {
+      localStorage.removeItem('userToken');
+      this.userData.next(null);
+      this._Router.navigate(['/login']);
+    }
   }
+  
 }
