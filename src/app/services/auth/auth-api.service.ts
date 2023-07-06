@@ -27,11 +27,11 @@ export class AuthApiService {
   }
 
   signUp(userData: object): Observable<any> {
-    return this._HttpClient.post(`http://accountbased.somee.com/api/Account/Register`, userData);
+    return this._HttpClient.post(`https://accountbased.somee.com/api/Account/Register`, userData);
   }
 
   signIn(userData: object): Observable<any> {
-    return this._HttpClient.post(`http://accountbased.somee.com/api/Account/Login`, userData);
+    return this._HttpClient.post(`https://accountbased.somee.com/api/Account/Login`, userData);
   }
 
   signOut() {
