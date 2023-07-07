@@ -27,11 +27,11 @@ export class AuthApiService {
   }
 
   signUp(userData: object): Observable<any> {
-    return this._HttpClient.post(`https://accountbased.somee.com/api/Account/Register`, userData);
+    return this._HttpClient.post(`https://route-ecommerce.onrender.com/api/v1/auth/signup`, userData);
   }
 
   signIn(userData: object): Observable<any> {
-    return this._HttpClient.post(`https://accountbased.somee.com/api/Account/Login`, userData);
+    return this._HttpClient.post(`https://route-ecommerce.onrender.com/api/v1/auth/signin`, userData);
   }
 
   signOut() {
