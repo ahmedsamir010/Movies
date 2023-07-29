@@ -27,7 +27,7 @@ export class AuthApiService {
   }
 
   signUp(userData: object): Observable<any> {
-    return this._HttpClient.post(`https://route-ecommerce.onrender.com/api/v1/auth/signup`, userData);
+    return this._HttpClient.post(`https://ecommerce.routemisr.com/api/v1/auth/signup`, userData);
   }
 
   signIn(userData: object): Observable<any> {
