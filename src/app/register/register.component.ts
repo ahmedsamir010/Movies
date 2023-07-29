@@ -27,10 +27,11 @@ export class RegisterComponent implements OnInit {
   registerForm() {
     this.isLoading = false;
     this.registerData = new FormGroup({
-      firstName: new FormControl(null, [Validators.minLength(3), Validators.maxLength(10), Validators.required]),
-      lastName: new FormControl(null, [Validators.minLength(3), Validators.maxLength(10), Validators.required]),
+      name: new FormControl(null, [Validators.minLength(3), Validators.maxLength(10), Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl(null, [Validators.pattern(/^[a-zA-Z0-9]{3,}$/), Validators.required]),
+      rePassword: new FormControl(null, [Validators.pattern(/^[a-zA-Z0-9]{3,}$/), Validators.required]),
+      phone:"01010700700"   
     });
   }
 
