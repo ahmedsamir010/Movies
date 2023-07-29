@@ -5,32 +5,28 @@
       <mat-error>{{ errorMessage }}</mat-error>
 
       <mat-form-field class="w-75" appearance="fill">
-        <mat-label>Enter your First Name</mat-label>
-        <input type="text" formControlName="firstName" placeholder="Enter First Name" matInput>
-        <mat-error *ngIf="registerData.controls['firstName'].invalid && registerData.controls['firstName'].touched">
-          Please enter a valid name (3-10 characters).
-        </mat-error>        
+        <mat-label>Enter your Name</mat-label>
+        <input type="text" formControlName="name" placeholder="Enter Your Name" matInput>
+        <mat-error *ngIf="registerData.get('name')?.hasError('minlength')">
+          Name must be at least 3 characters long.
+        </mat-error>
+        <mat-error *ngIf="registerData.get('name')?.hasError('maxlength')">
+          Name can't be longer than 10 characters.
+        </mat-error>
+        <mat-error *ngIf="registerData.get('name')?.hasError('required')">
+          Name is required.
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field class="my-3 w-75" appearance="fill">
-        <mat-label>Enter your Last Name</mat-label>
-        <input type="text" formControlName="lastName" placeholder="Enter Last Name" matInput>
-        <mat-error *ngIf="registerData.controls['lastName'].invalid && registerData.controls['lastName'].touched">
-          Please enter a valid name (3-10 characters).
+        <mat-label>Enter your Email</mat-label>
+        <input type="email" formControlName="email" placeholder="Enter Email" matInput>
+        <mat-error *ngIf="registerData.controls['email'].invalid && registerData.controls['email'].touched">
+          Please enter a valid email address.
         </mat-error>
-        
       </mat-form-field>
 
       <mat-form-field class="w-75" appearance="fill">
-        <mat-label>Enter your Email</mat-label>
-        <input type="email" formControlName="email" placeholder="Enter Email" matInput>
-        <mat-error *ngIf="registerData.get('email')?.invalid && registerData.get('email')?.touched">
-          Please enter a valid email address.
-        </mat-error>
-        
-      </mat-form-field>
-
-      <mat-form-field class="my-3 w-75" appearance="fill">
         <mat-label>Enter your password</mat-label>
         <input formControlName="password" placeholder="Enter Password" type="password" matInput [type]="hide ? 'password' : 'text'">
         <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" type="button">
@@ -39,6 +35,25 @@
         <mat-error *ngIf="registerData.controls['password'].invalid && registerData.controls['password'].touched">
           Please enter a valid password (minimum 3 characters, alphanumeric only).
         </mat-error>        
+      </mat-form-field>
+
+      <mat-form-field class="my-3 w-75" appearance="fill">
+        <mat-label>Re-enter your password</mat-label>
+        <input formControlName="rePassword" placeholder="Re-enter Password" type="password" matInput [type]="hide ? 'password' : 'text'">
+        <mat-error *ngIf="registerData.hasError('passwordMismatch')">
+          Passwords do not match.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="my-3 w-75" appearance="fill">
+        <mat-label>Enter your Phone Number</mat-label>
+        <input type="text" formControlName="phone" placeholder="Enter Phone Number" matInput>
+        <mat-error *ngIf="registerData.get('phone')?.hasError('pattern')">
+          Please enter a valid Egypt phone number (e.g., 01012345678).
+        </mat-error>
+        <mat-error *ngIf="registerData.get('phone')?.hasError('required')">
+          Phone number is required.
+        </mat-error>
       </mat-form-field>
 
       <br>
