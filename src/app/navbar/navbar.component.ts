@@ -1,5 +1,5 @@
+import { AuthService } from '../Auth-Service/services/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { AuthApiService } from '../services/auth/auth-api.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,30 +7,34 @@ import { AuthApiService } from '../services/auth/auth-api.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  userName: string = '';
-  isLogin: boolean = false;
+  isLogin:boolean=false;
+constructor(private _AuthService:AuthService){}
 
-  constructor(private _AuthApiService: AuthApiService) { }
+ngOnInit(): void {this.alreadyLogin();}
 
-  ngOnInit(): void {
-    this.alreadyLogin();
+alreadyLogin()
+{
+this._AuthService.userData.subscribe({
+  next:()=>{
+
+
+    if(this._AuthService.userData.getValue() != null)
+    {
+
+
+      this.isLogin=true;
+    }
+    else{
+      this.isLogin=false;
+    }
   }
+})
 
-  alreadyLogin() {
-    this._AuthApiService.userData.subscribe({
-      next: (userData) => {
-        if (userData != null) {
-          this.isLogin = true;
-          this.userName = userData.firstName; // Set the user's first name
-        } else {
-          this.isLogin = false;
-          this.userName = '';
-        }
-      }
-    });
-  }
+}
 
-  logOut() {
-    this._AuthApiService.signOut();
-  }
+logOut()
+{
+  this._AuthService.signOut();
+}
+
 }
